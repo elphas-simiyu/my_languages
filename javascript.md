@@ -312,3 +312,80 @@ console.log(big + 1n); // works fine
 | BigInt    | `12345678901234567890n` | Very large integers          |
 
 ---
+
+
+---
+# 🔑 Type Conversion & Type Coercion in JavaScript
+
+---
+## 1. **What It Is**
+* **Type Conversion (Explicit / Casting)** → You manually change one data type into another (e.g., string → number).
+* **Type Coercion (Implicit)** → JavaScript automatically changes types when needed (e.g., `"5" * 2` → number).
+---
+
+## 2. **Explicit Conversion (Type Casting)**
+You intentionally convert values using built-in functions.
+### Example:
+```js
+// String → Number
+let str = "123";
+let num = Number(str);  
+console.log(num); // 123 (number)
+
+// Number → String
+let age = 25;
+let ageStr = String(age); 
+console.log(ageStr); // "25" (string)
+
+// Boolean → Number
+console.log(Number(true));  // 1
+console.log(Number(false)); // 0
+```
+* **Explicit is safer** → you know exactly what’s happening.
+* Avoids surprises from automatic type changes.
+---
+
+## 3. **Implicit Conversion (Type Coercion)**
+JavaScript changes the type **automatically** in certain operations.
+### Example:
+```js
+// String + Number → String (concatenation)
+console.log("5" + 3); // "53"
+
+// String * Number → Number
+console.log("5" * 2); // 10
+
+// Boolean in numeric context
+console.log(true + 1); // 2
+console.log(false + 5); // 5
+```
+* Sometimes convenient for quick operations.
+* But can cause **bugs** if you don’t expect it.
+---
+
+## 4. **Falsy and Truthy Values**
+When JS needs a boolean, values convert automatically:
+* **Falsy** (treated as `false`): `0`, `""` (empty string), `null`, `undefined`, `NaN`, `false`.
+* **Truthy** (treated as `true`): Everything else (e.g., `"0"`, `" "`, `[]`, `{}`).
+### Example:
+```js
+if ("") console.log("truthy"); // ❌ Won’t run
+if ("hello") console.log("truthy"); // ✅ Runs
+```
+* Helps when checking conditions.
+* Alternatives: always compare explicitly (`value === null`).
+---
+
+## 5. **Special Cases to Watch Out For**
+```js
+console.log("5" - "2");   // 3  (coercion to numbers)
+console.log("5" + "2");   // "52" (coercion to string)
+console.log(null + 1);    // 1 (null → 0)
+console.log(undefined + 1); // NaN (undefined → NaN)
+```
+---
+## ⚡Summary
+* **Conversion (explicit):** Use `Number()`, `String()`, `Boolean()`.
+* **Coercion (implicit):** Happens automatically in operations.
+* **Best practice:** Prefer **explicit conversion** for clarity.
+---
