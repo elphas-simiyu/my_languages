@@ -123,15 +123,6 @@
 
 * Variables and Constants (`var`, `let`, `const`)
 
-Perfect 👌 That’s a clear format.
-So for each concept, I’ll do this flow:
-
-1. **What it is**
-2. **Code examples**
-3. **Why it’s used (vs alternatives)**
-
-Let’s re-do **Variables and Constants (`var`, `let`, `const`)** in that exact structure.
-
 ---
 
 # 🔑 JavaScript Variables and Constants
@@ -204,4 +195,120 @@ console.log(numbers); // [1, 2, 3, 4]
 * **Use `const` by default** → for safety.
 * **Use `let` when reassignment is needed**.
 * **Avoid `var`** → only for legacy compatibility.
+---
+
+---
+
+# 🔑 JavaScript Data Types
+* **Primitive Types** (simple, immutable values)
+* **Reference Types** (objects, arrays, functions, etc.)
+ **primitives**
+ 
+## 1. **String**
+### What it is:
+* A sequence of characters (text).
+* Written inside quotes (`' '`, `" "`, or `` ` ` ``).
+### Example:
+```js
+let name = "Alice";    // double quotes
+let city = 'Nairobi';  // single quotes
+let message = `Hello, ${name}`; // template literal (with variables)
+```
+* Strings are for **text values**.
+* Template literals (`` ` ``) are preferred when embedding variables or writing multi-line text.
+* Alternatives: numbers (for math), booleans (for true/false).
+---
+
+## 2. **Number**
+* Represents **both integers and decimals** (no separate int/float types).
+* Can also represent special values like `Infinity`, `-Infinity`, `NaN` (Not-a-Number).
+### Example:
+```js
+let age = 25;
+let price = 19.99;
+console.log(10 / 0); // Infinity
+console.log("abc" * 2); // NaN
+```
+* Numbers are for math & calculations.
+* Alternative: `BigInt` (for very large integers).
+---
+
+## 3. **Boolean**
+* Represents **true/false values**.
+* Often used in conditions and logic.
+### Example:
+```js
+let isOnline = true;
+let isLoggedIn = false;
+
+if (isOnline) {
+  console.log("User is online");
+}
+```
+* Used in **control flow (if/else, loops, comparisons)**.
+* Alternative: `0/1` or `"yes/no"` but booleans are clearer.
+---
+
+## 4. **Null**
+* Represents **intentional absence of value**.
+* You set it yourself when you want to say “nothing here.”
+### Example:
+```js
+let user = null; // no user yet
+```
+* Use `null` when you **know** a value should be empty.
+* Alternative: `undefined` (but that usually means “not assigned yet”).
+---
+
+## 5. **Undefined**
+* Means a variable was declared but **not assigned a value**.
+* Default value for uninitialized variables.
+### Example:
+```js
+let name;
+console.log(name); // undefined
+```
+* Used by JavaScript itself to mean “missing value.”
+* Alternative: `null` (intentional absence).
+---
+
+## 6. **Symbol** (ES6)
+* A **unique, immutable identifier**.
+* Often used as keys in objects to avoid naming conflicts.
+### Example:
+```js
+const id1 = Symbol("id");
+const id2 = Symbol("id");
+
+console.log(id1 === id2); // false (always unique)
+```
+* Safer than strings when creating object keys.
+* Alternative: strings (but they can clash).
+---
+
+## 7. **BigInt** (ES2020)
+* Represents **integers larger than `Number.MAX_SAFE_INTEGER` (2^53 - 1)**.
+* Created by adding `n` at the end of a number.
+### Example:
+
+```js
+const big = 123456789012345678901234567890n;
+console.log(big + 1n); // works fine
+```
+* Use BigInt when dealing with **huge numbers** (cryptography, financial apps).
+* Alternative: `Number`, but it loses precision after 2^53.
+---
+
+## ⚡ Summary 
+
+| Type      | Example                 | Use Case                     |
+| --------- | ----------------------- | ---------------------------- |
+| String    | `"Hello"`, `'Hi'`       | Text, messages               |
+| Number    | `42`, `3.14`            | Math, calculations           |
+| Boolean   | `true`, `false`         | Logic, conditions            |
+| Null      | `null`                  | Intentional empty value      |
+| Undefined | `let x;`                | Missing/unset variable       |
+| Symbol    | `Symbol("id")`          | Unique keys, avoid conflicts |
+| BigInt    | `12345678901234567890n` | Very large integers          |
+
 ---
