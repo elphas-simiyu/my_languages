@@ -119,3 +119,89 @@
 
 ---
 
+### 1. Core Language Fundamentals
+
+* Variables and Constants (`var`, `let`, `const`)
+
+Perfect 👌 That’s a clear format.
+So for each concept, I’ll do this flow:
+
+1. **What it is**
+2. **Code examples**
+3. **Why it’s used (vs alternatives)**
+
+Let’s re-do **Variables and Constants (`var`, `let`, `const`)** in that exact structure.
+
+---
+
+# 🔑 JavaScript Variables and Constants
+
+---
+
+## 1. `var`
+* The **old way** of declaring variables (before ES6).
+* **Function-scoped**, not block-scoped.
+* Can be **redeclared** and **reassigned**.
+* Hoisted to the top with `undefined`.
+### Example:
+```js
+var name = "Alice";
+var name = "Bob"; // redeclaration allowed
+console.log(name); // "Bob"
+```
+```js
+if (true) {
+  var x = 10; 
+}
+console.log(x); // ✅ 10 (escapes block)
+```
+* **Today:** Rarely used, only for **legacy codebases**.
+* **Problem:** Not block-scoped → causes bugs.
+* **Alternative:** Prefer `let` or `const`.
+---
+
+## 2. `let`
+* Introduced in **ES6 (2015)**.
+* **Block-scoped** (only accessible inside `{}`).
+* Can be reassigned, but **cannot be redeclared** in the same scope.
+### Example:
+```js
+let age = 20;
+age = 21; // ✅ can reassign
+// let age = 25; ❌ Error (no redeclaration in same block)
+
+if (true) {
+  let y = 50;
+  console.log(y); // ✅ 50
+}
+// console.log(y); ❌ Error (block-scoped)
+```
+* Safer than `var` → doesn’t “leak” out of blocks.
+* Use `let` if the value **will change** later.
+* Compared to `const`: choose `let` when you **need reassignment**.
+---
+
+## 3. `const`
+* Also introduced in **ES6**.
+* **Block-scoped**.
+* Must be **initialized immediately**.
+* Cannot be reassigned.
+* Objects/arrays can still be modified (the reference is constant, not the content).
+### Example:
+```js
+const PI = 3.14159;
+// PI = 3.14; ❌ Error
+
+const numbers = [1, 2, 3];
+numbers.push(4); // ✅ allowed (modifying contents)
+console.log(numbers); // [1, 2, 3, 4]
+```
+* Prevents accidental reassignment.
+* Makes code **more predictable**.
+* Best default choice: use `const` unless you know you’ll reassign.
+---
+## 🔥 Summary:
+* **Use `const` by default** → for safety.
+* **Use `let` when reassignment is needed**.
+* **Avoid `var`** → only for legacy compatibility.
+---
